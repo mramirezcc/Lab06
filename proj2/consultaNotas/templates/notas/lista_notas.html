@@ -5,11 +5,24 @@
 </head>
 <body>
 	<h1>Lista de Notas</h1>
-	<ul>
-    	{% for nota in notas %}
-        	<li>{{ nota.alumno.nombre }} obtuvo {{ nota.nota }} en {{ nota.curso.nombre }}</li>
-    	{% endfor %}
-	</ul>
+	<table>
+		<thead>
+			<tr>
+				<th>Alumno</th>
+				{% for nota in notas %}
+					<th>{{nota.curso}}</th>
+				{% endfor %}
+			</tr>
+		</thead>
+		<tbody>
+			{% for nota in notas %}
+			<tr>
+				<td>{{nota.alumno}}</td>
+				<td>{{nota.nota}}</td>
+			{% endfor %}
+			</tr>
+		</tbody>
+	</table>
 	<a href="{% url 'agregar_nota' %}">Agregar más notas</a>
 </body>
 </html>
