@@ -16,11 +16,13 @@
 		</thead>
 		<tbody>
 			{% for nota in notas %}
-			<tr>
-				<td>{{nota.alumno}}</td>
-				<td>{{nota.nota}}</td>
+				<tr>
+					<td>{{ nota.alumno.nombre }}</td>
+					{% for curso in notas %}
+						<td>{{ nota.nota }}</td>
+					{% endfor %}
+				</tr>
 			{% endfor %}
-			</tr>
 		</tbody>
 	</table>
 	<a href="{% url 'agregar_nota' %}">Agregar más notas</a>
