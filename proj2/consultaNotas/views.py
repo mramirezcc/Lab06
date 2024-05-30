@@ -15,5 +15,5 @@ def agregar_nota(request):
         return render(request, 'notas/agregar_nota.html', {'form': form})
 
 def lista_notas(request):
-    notas = NotasAlumnosPorCurso(request)
+    notas = NotasAlumnosPorCurso.objects.all()
     return render(request, 'notas/lista_notas.html', {'notas': notas})
