@@ -15,4 +15,4 @@ class Venta(models.Model):
     fecha = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"Venta de {self.cantidad} unidades de {self.producto}"
+        return f"Venta de {self.cantidad} unidades de {self.producto.nombre}"
