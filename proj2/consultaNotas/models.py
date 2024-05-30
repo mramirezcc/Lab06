@@ -16,7 +16,7 @@ class Alumno(models.Model):
         MaxValueValidator(99999999)
     ])
     nombre = models.CharField(max_length=100)
-    anio = models.SmallIntegerField(choices=Anio.choices)
+    anio = models.SmallIntegerField(choices=Anio.choices, verbose_name="Año")
 
     def __str__(self):
         return self.nombre
