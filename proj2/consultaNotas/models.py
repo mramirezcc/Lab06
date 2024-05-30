@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 class Alumno(models.Model):
 
@@ -11,7 +12,9 @@ class Alumno(models.Model):
 
     #Dado que un CUI empieza con el año de ingreso, no será
     #necesario considerar ceros a la izquierda
-    cui = models.IntegerField(max_digits=8)
+    cui = models.IntegerField(validators=[
+        MaxValueValidator(99999999)
+    ])
     nombre = models.CharField(max_length=100)
     anio = models.SmallIntegerField(choices=Anio.choices)
 
@@ -28,7 +31,10 @@ class Curso(models.Model):
 class NotasAlumnosPorCurso(models.Model):
     alumno = models.ForeignKey(Alumno, on_delete=models.CASCADE)
     curso = models.ForeignKey(Curso, on_delete=models.CASCADE)
-    nota = models.DecimalField(max_value=20, decimal_places=1)
+    nota = models.DecimalField(validators=[
+        MinValueValidator(0),
+        MaxValueValidator(20)
+    ], max_digits=3, decimal_places=1)
 
     def __str__(self):
         return f"{self.alumno.nombre} tiene una nota de {self.nota} en {self.curso.codigo}"
