@@ -4,7 +4,7 @@ from django.core.validators import MaxValueValidator
 
 #El formulario solo permitirá subir notas, pues agregar alumnos
 #y cursos no debería ser una tarea del usuario
-class AgregarNotas(forms.ModelForm):
+class AgregarNotasForm(forms.ModelForm):
     codigo_curso = forms.CharField(max_length=10, label="Código del curso")
     cui_alumno = forms.IntegerField(validators=[
         MaxValueValidator(99999999)
